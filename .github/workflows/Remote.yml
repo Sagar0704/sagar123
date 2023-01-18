@@ -1,0 +1,51 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: 
+   workflow_dispatch:
+    inputs:
+      name:
+         description: "asdsad"
+         required: false
+         default: ""
+      home:
+         description: "Asdadasda"
+         required: false
+         default: ""
+      test:
+        description: 'Test Plan issue key'
+        required: false
+        default: ""
+      ISSUE_KEY:
+        description: 'Test Plan issue key'
+        required: false
+        default: ""
+      TESTS_KEY:
+        description: 'Test Plan issue key'
+        required: false
+        default: ""
+      PROJECT_KEY:
+        description: 'Test Plan issue key'
+        required: false
+        default: ""
+      USER:
+        description: 'Test Plan issue key'
+        required: false
+        default: ""
+        
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+      - name: Run a multi-line
+        run: |
+           echo ${{github.event.inputs.test}}
+           echo ${{github.event.inputs.ISSUE_KEY}}
+           echo ${{github.event.inputs.TESTS_KEY}}
+           echo ${{github.event.inputs.PROJECT_KEY}}
+           echo ${{github.event.inputs.USER}}
